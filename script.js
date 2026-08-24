@@ -113,42 +113,166 @@ SELECT * FROM students;`,
 
 
 /* ================================================= */
+/* CURRENT LANGUAGE */
+/* ================================================= */
+
+let currentLanguage = "";
+
+let editor = null;
+
+
+/* ================================================= */
+/* FILE EXTENSIONS */
+/* ================================================= */
+
+const extensions = {
+
+    "C": "c",
+
+    "C++": "cpp",
+
+    "Java": "java",
+
+    "Python": "py",
+
+    "JavaScript": "js",
+
+    "Go": "go",
+
+    "Rust": "rs",
+
+    "HTML": "html",
+
+    "CSS": "css",
+
+    "PHP": "php",
+
+    "SQL": "sql",
+
+    "MySQL": "sql",
+
+    "PostgreSQL": "sql",
+
+    "SQLite": "sql",
+
+    "Kotlin": "kt",
+
+    "Dart": "dart"
+
+};
+
+
+/* ================================================= */
+/* CODEMIRROR MODE */
+/* ================================================= */
+
+function getMode(language) {
+
+    switch (language) {
+
+        case "Python":
+            return "python";
+
+        case "JavaScript":
+            return "javascript";
+
+        case "HTML":
+            return "xml";
+
+        case "CSS":
+            return "css";
+
+        case "SQL":
+        case "MySQL":
+        case "PostgreSQL":
+        case "SQLite":
+            return "sql";
+
+        case "C":
+        case "C++":
+        case "Java":
+        case "Kotlin":
+            return "text/x-csrc";
+
+        default:
+            return "text/plain";
+    }
+
+}
+
+
+/* ================================================= */
 /* OPEN EDITOR */
 /* ================================================= */
 
 function openEditor(language) {
 
-    const home =
-        document.getElementById("homeScreen");
-
-    const editor =
-        document.getElementById("editorScreen");
-
-    const editorLanguage =
-        document.getElementById("editorLanguage");
-
-    const codeEditor =
-        document.getElementById("codeEditor");
-
-    const output =
-        document.getElementById("outputText");
+    currentLanguage = language;
 
 
-    home.style.display = "none";
-
-    editor.style.display = "flex";
-
-
-    editorLanguage.textContent =
-        language;
+    document.getElementById(
+        "homeScreen"
+    ).style.display = "none";
 
 
-    codeEditor.value =
+    document.getElementById(
+        "editorScreen"
+    ).style.display = "flex";
+
+
+    document.getElementById(
+        "editorLanguage"
+    ).textContent = language;
+
+
+    document.getElementById(
+        "fileName"
+    ).textContent =
+        "main." +
+        (extensions[language] || "code");
+
+
+    document.getElementById(
+        "outputText"
+    ).textContent =
+        "Ready to run...";
+
+
+    if (editor) {
+
+        editor.toTextArea();
+
+    }
+
+
+    const textarea =
+        document.getElementById(
+            "codeEditor"
+        );
+
+
+    textarea.value =
         programs[language] || "";
 
 
-    output.textContent =
-        "Ready to run...";
+    editor = CodeMirror.fromTextArea(
+        textarea,
+        {
+            theme: "dracula",
+
+            lineNumbers: true,
+
+            mode: getMode(language),
+
+            indentUnit: 4,
+
+            tabSize: 4,
+
+            lineWrapping: false,
+
+            autofocus: true
+        }
+    );
 
 }
 
@@ -159,16 +283,23 @@ function openEditor(language) {
 
 function goHome() {
 
-    const home =
-        document.getElementById("homeScreen");
-
-    const editor =
-        document.getElementById("editorScreen");
+    document.getElementById(
+        "editorScreen"
+    ).style.display = "none";
 
 
-    editor.style.display = "none";
+    document.getElementById(
+        "homeScreen"
+    ).style.display = "block";
 
-    home.style.display = "block";
+
+    if (editor) {
+
+        editor.toTextArea();
+
+        editor = null;
+
+    }
 
 }
 
@@ -179,39 +310,38 @@ function goHome() {
 
 function runProgram() {
 
-    const language =
-        document
-        .getElementById("editorLanguage")
-        .textContent;
+    if (!editor) {
+        return;
+    }
 
 
     const code =
-        document
-        .getElementById("codeEditor")
-        .value;
+        editor.getValue();
 
 
     const output =
-        document
-        .getElementById("outputText");
+        document.getElementById(
+            "outputText"
+        );
 
 
     /*
-       JavaScript can run directly
-       in the browser.
+       At this stage only JavaScript
+       can actually execute locally.
 
-       C, C++, Java, Python, etc.
-       will be connected to a compiler
-       API in a later stage.
+       Other languages will be connected
+       to a real compiler API later.
     */
 
-    if (language === "JavaScript") {
+
+    if (currentLanguage === "JavaScript") {
 
         try {
 
             let result = "";
 
-            const oldConsoleLog =
+
+            const oldLog =
                 console.log;
 
 
@@ -227,12 +357,12 @@ function runProgram() {
 
 
             console.log =
-                oldConsoleLog;
+                oldLog;
 
 
             output.textContent =
                 result ||
-                "Program finished.";
+                "Program finished successfully.";
 
         }
 
@@ -249,10 +379,94 @@ function runProgram() {
     else {
 
         output.textContent =
-            language +
-            " compiler will be connected in the next stage.";
+            currentLanguage +
+            " compiler is not connected yet.\n\n" +
+            "The next stage will connect PolyCode to a real compiler.";
 
     }
+
+}
+
+
+/* ================================================= */
+/* CLEAR CODE */
+/* ================================================= */
+
+function clearCode() {
+
+    if (editor) {
+
+        editor.setValue("");
+
+    }
+
+}
+
+
+/* ================================================= */
+/* CLEAR OUTPUT */
+/* ================================================= */
+
+function clearOutput() {
+
+    document.getElementById(
+        "outputText"
+    ).textContent = "";
+
+}
+
+
+/* ================================================= */
+/* SAVE CODE */
+/* ================================================= */
+
+function saveCode() {
+
+    if (!editor) {
+        return;
+    }
+
+
+    const code =
+        editor.getValue();
+
+
+    const extension =
+        extensions[currentLanguage] ||
+        "txt";
+
+
+    const filename =
+        "main." + extension;
+
+
+    const blob =
+        new Blob(
+            [code],
+            {
+                type: "text/plain"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+    link.download =
+        filename;
+
+
+    link.click();
+
+
+    URL.revokeObjectURL(url);
 
 }
 
@@ -261,13 +475,11 @@ function runProgram() {
 /* SEARCH */
 /* ================================================= */
 
-const searchBox =
-    document.getElementById("searchBox");
-
-
-searchBox.addEventListener(
+document
+.getElementById("searchBox")
+.addEventListener(
     "input",
-    function () {
+    function() {
 
         const search =
             this.value
@@ -281,75 +493,49 @@ searchBox.addEventListener(
             );
 
 
-        cards.forEach(function(card) {
+        cards.forEach(
+            function(card) {
 
-            const name =
-                card
-                .dataset
-                .name
-                .toLowerCase();
+                const name =
+                    card.dataset
+                    .name
+                    .toLowerCase();
 
 
-            if (name.includes(search)) {
+                if (
+                    name.includes(search)
+                ) {
 
-                card.style.display =
-                    "flex";
+                    card.style.display =
+                        "flex";
+
+                }
+
+                else {
+
+                    card.style.display =
+                        "none";
+
+                }
 
             }
-
-            else {
-
-                card.style.display =
-                    "none";
-
-            }
-
-        });
+        );
 
     }
 );
 
 
 /* ================================================= */
-/* TAB SUPPORT */
+/* EDITOR MENU */
 /* ================================================= */
 
-const codeEditor =
-    document.getElementById("codeEditor");
+function showEditorMenu() {
+
+    alert(
+        "More editor features will be added here."
+    );
+
+}
 
 
-codeEditor.addEventListener(
-    "keydown",
-    function(event) {
 
-        if (event.key === "Tab") {
-
-            event.preventDefault();
-
-
-            const start =
-                this.selectionStart;
-
-            const end =
-                this.selectionEnd;
-
-
-            this.value =
-                this.value.substring(
-                    0,
-                    start
-                ) +
-                "    " +
-                this.value.substring(
-                    end
-                );
-
-
-            this.selectionStart =
-                this.selectionEnd =
-                start + 4;
-
-        }
-
-    }
-);
