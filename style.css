@@ -3,6 +3,7 @@
 }
 
 body {
+
     margin: 0;
 
     font-family: Arial, sans-serif;
@@ -81,8 +82,6 @@ body {
 
 .welcome p {
 
-    margin-top: 7px;
-
     color: #94a3b8;
 
     font-size: 14px;
@@ -134,16 +133,10 @@ body {
     font-weight: bold;
 
     margin-bottom: 13px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
 }
 
 
-/* ================= LANGUAGE GRID ================= */
+/* ================= LANGUAGE CARDS ================= */
 
 .languageGrid {
 
@@ -155,8 +148,6 @@ body {
     gap: 12px;
 }
 
-
-/* ================= LANGUAGE CARD ================= */
 
 .languageCard {
 
@@ -184,11 +175,9 @@ body {
 
 .languageCard:hover {
 
-    transform: translateY(-3px);
-
     border-color: #38bdf8;
 
-    background: #243247;
+    transform: translateY(-3px);
 }
 
 
@@ -234,7 +223,7 @@ body {
 }
 
 
-/* EDITOR HEADER */
+/* ================= EDITOR HEADER ================= */
 
 .editorHeader {
 
@@ -246,31 +235,55 @@ body {
 
     align-items: center;
 
-    padding: 0 12px;
+    padding: 0 10px;
 
-    gap: 12px;
+    gap: 10px;
 }
 
 
 .backButton {
 
-    border: none;
-
     background: none;
+
+    border: none;
 
     color: white;
 
-    font-size: 25px;
+    font-size: 27px;
+}
 
-    cursor: pointer;
+
+.editorInfo {
+
+    flex: 1;
 }
 
 
 .editorLanguage {
 
-    font-size: 18px;
+    font-size: 17px;
 
     font-weight: bold;
+}
+
+
+.fileNameHeader {
+
+    font-size: 11px;
+
+    color: #94a3b8;
+}
+
+
+.moreButton {
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 25px;
 }
 
 
@@ -278,13 +291,17 @@ body {
 
 .toolbar {
 
-    background: #1e293b;
+    height: 48px;
 
-    padding: 8px;
+    background: #1e293b;
 
     display: flex;
 
+    align-items: center;
+
     gap: 8px;
+
+    padding: 6px 10px;
 }
 
 
@@ -296,47 +313,79 @@ body {
 
     border: none;
 
-    border-radius: 7px;
+    border-radius: 6px;
 
-    padding: 9px 18px;
+    padding: 8px 16px;
 
     font-weight: bold;
-
-    cursor: pointer;
 }
 
 
-/* ================= EDITOR ================= */
+.toolButton {
 
-.editorArea {
+    background: #334155;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    padding: 8px 12px;
+}
+
+
+/* ================= CODE EDITOR ================= */
+
+.codeContainer {
 
     flex: 1;
 
-    display: flex;
+    min-height: 200px;
 
-    flex-direction: column;
-
-    min-height: 0;
+    overflow: hidden;
 }
 
 
-.fileName {
+.CodeMirror {
 
-    background: #172033;
+    height: 100%;
+
+    font-size: 14px;
+
+    font-family: monospace;
+}
+
+
+/* ================= INPUT ================= */
+
+.inputPanel {
+
+    height: 100px;
+
+    background: #020617;
+
+    border-top: 1px solid #334155;
+}
+
+
+.panelTitle {
+
+    padding: 6px 10px;
+
+    background: #1e293b;
 
     color: #94a3b8;
 
-    padding: 7px 12px;
-
-    font-size: 12px;
+    font-size: 11px;
 }
 
 
-textarea {
-
-    flex: 1;
+#inputText {
 
     width: 100%;
+
+    height: 70px;
 
     resize: none;
 
@@ -344,57 +393,71 @@ textarea {
 
     outline: none;
 
-    padding: 15px;
+    padding: 10px;
 
     background: #020617;
 
-    color: #e2e8f0;
+    color: white;
 
     font-family: monospace;
-
-    font-size: 15px;
-
-    line-height: 1.6;
 }
 
 
 /* ================= OUTPUT ================= */
 
-.output {
+.outputPanel {
 
-    height: 180px;
+    height: 160px;
 
     background: #020617;
 
     border-top: 1px solid #334155;
-
-    display: flex;
-
-    flex-direction: column;
 }
 
 
-.outputTitle {
+.outputHeader {
 
-    padding: 8px 12px;
+    height: 35px;
 
     background: #1e293b;
 
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 10px;
+
     color: #94a3b8;
 
-    font-size: 13px;
+    font-size: 12px;
+}
+
+
+.outputHeader button {
+
+    background: none;
+
+    border: none;
+
+    color: #38bdf8;
 }
 
 
 #outputText {
 
-    padding: 12px;
+    padding: 10px;
 
-    font-family: monospace;
+    height: 125px;
+
+    overflow-y: auto;
 
     white-space: pre-wrap;
 
-    overflow-y: auto;
+    font-family: monospace;
+
+    font-size: 13px;
 
     color: #cbd5e1;
 }
