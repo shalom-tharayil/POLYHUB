@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PolyCode</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            Poly<span>Code</span>
+        </div>
+
+        <div class="menu">
+            ☰
+        </div>
+
+    </header>
+
+
+    <!-- ================= HOME SCREEN ================= -->
+
+    <section id="homeScreen">
+
+        <div class="welcome">
+
+            <h1>
+                Welcome to PolyCode
+            </h1>
+
+            <p>
+                Choose a programming environment
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <input
+            type="text"
+            id="searchBox"
+            class="searchBox"
+            placeholder="🔍 Search language..."
+        >
+
+
+        <!-- PROGRAMMING -->
+
+        <div class="category">
+
+            <div class="categoryTitle">
+                💻 Programming
+            </div>
+
+            <div class="languageGrid">
+
+
+                <div
+                    class="languageCard"
+                    data-name="C"
+                    onclick="openEditor('C')"
+                >
+
+                    <div class="languageIcon">
+                        C
+                    </div>
+
+                    <div class="languageName">
+                        C
+                    </div>
+
+                    <div class="languageDescription">
+                        General purpose
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="C++"
+                    onclick="openEditor('C++')"
+                >
+
+                    <div class="languageIcon">
+                        C++
+                    </div>
+
+                    <div class="languageName">
+                        C++
+                    </div>
+
+                    <div class="languageDescription">
+                        High performance
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="Java"
+                    onclick="openEditor('Java')"
+                >
+
+                    <div class="languageIcon">
+                        ☕
+                    </div>
+
+                    <div class="languageName">
+                        Java
+                    </div>
+
+                    <div class="languageDescription">
+                        Object oriented
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="Python"
+                    onclick="openEditor('Python')"
+                >
+
+                    <div class="languageIcon">
+                        🐍
+                    </div>
+
+                    <div class="languageName">
+                        Python
+                    </div>
+
+                    <div class="languageDescription">
+                        Easy & powerful
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="Go"
+                    onclick="openEditor('Go')"
+                >
+
+                    <div class="languageIcon">
+                        Go
+                    </div>
+
+                    <div class="languageName">
+                        Go
+                    </div>
+
+                    <div class="languageDescription">
+                        Cloud & backend
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="Rust"
+                    onclick="openEditor('Rust')"
+                >
+
+                    <div class="languageIcon">
+                        🦀
+                    </div>
+
+                    <div class="languageName">
+                        Rust
+                    </div>
+
+                    <div class="languageDescription">
+                        Safe & fast
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WEB DEVELOPMENT -->
+
+        <div class="category">
+
+            <div class="categoryTitle">
+                🌐 Web Development
+            </div>
+
+            <div class="languageGrid">
+
+
+                <div
+                    class="languageCard"
+                    data-name="HTML"
+                    onclick="openEditor('HTML')"
+                >
+
+                    <div class="languageIcon">
+                        🌐
+                    </div>
+
+                    <div class="languageName">
+                        HTML
+                    </div>
+
+                    <div class="languageDescription">
+                        Web structure
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="CSS"
+                    onclick="openEditor('CSS')"
+                >
+
+                    <div class="languageIcon">
+                        🎨
+                    </div>
+
+                    <div class="languageName">
+                        CSS
+                    </div>
+
+                    <div class="languageDescription">
+                        Web styling
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="JavaScript"
+                    onclick="openEditor('JavaScript')"
+                >
+
+                    <div class="languageIcon">
+                        JS
+                    </div>
+
+                    <div class="languageName">
+                        JavaScript
+                    </div>
+
+                    <div class="languageDescription">
+                        Web programming
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="PHP"
+                    onclick="openEditor('PHP')"
+                >
+
+                    <div class="languageIcon">
+                        PHP
+                    </div>
+
+                    <div class="languageName">
+                        PHP
+                    </div>
+
+                    <div class="languageDescription">
+                        Server-side web
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DATABASE -->
+
+        <div class="category">
+
+            <div class="categoryTitle">
+                🗄️ Database
+            </div>
+
+            <div class="languageGrid">
+
+
+                <div
+                    class="languageCard"
+                    data-name="SQL"
+                    onclick="openEditor('SQL')"
+                >
+
+                    <div class="languageIcon">
+                        🗄️
+                    </div>
+
+                    <div class="languageName">
+                        SQL
+                    </div>
+
+                    <div class="languageDescription">
+                        Database language
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="MySQL"
+                    onclick="openEditor('MySQL')"
+                >
+
+                    <div class="languageIcon">
+                        🐬
+                    </div>
+
+                    <div class="languageName">
+                        MySQL
+                    </div>
+
+                    <div class="languageDescription">
+                        Relational database
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="PostgreSQL"
+                    onclick="openEditor('PostgreSQL')"
+                >
+
+                    <div class="languageIcon">
+                        🐘
+                    </div>
+
+                    <div class="languageName">
+                        PostgreSQL
+                    </div>
+
+                    <div class="languageDescription">
+                        Advanced SQL
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="SQLite"
+                    onclick="openEditor('SQLite')"
+                >
+
+                    <div class="languageIcon">
+                        📦
+                    </div>
+
+                    <div class="languageName">
+                        SQLite
+                    </div>
+
+                    <div class="languageDescription">
+                        Lightweight database
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOBILE -->
+
+        <div class="category">
+
+            <div class="categoryTitle">
+                📱 Mobile Development
+            </div>
+
+            <div class="languageGrid">
+
+
+                <div
+                    class="languageCard"
+                    data-name="Kotlin"
+                    onclick="openEditor('Kotlin')"
+                >
+
+                    <div class="languageIcon">
+                        K
+                    </div>
+
+                    <div class="languageName">
+                        Kotlin
+                    </div>
+
+                    <div class="languageDescription">
+                        Android development
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="languageCard"
+                    data-name="Dart"
+                    onclick="openEditor('Dart')"
+                >
+
+                    <div class="languageIcon">
+                        D
+                    </div>
+
+                    <div class="languageName">
+                        Dart
+                    </div>
+
+                    <div class="languageDescription">
+                        Flutter development
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EDITOR SCREEN ================= -->
+
+    <section id="editorScreen">
+
+        <div class="editorHeader">
+
+            <button
+                class="backButton"
+                onclick="goHome()"
+            >
+                ←
+            </button>
+
+            <div
+                id="editorLanguage"
+                class="editorLanguage"
+            >
+                Python
+            </div>
+
+        </div>
+
+
+        <div class="toolbar">
+
+            <button
+                class="runButton"
+                onclick="runProgram()"
+            >
+                ▶ RUN
+            </button>
+
+        </div>
+
+
+        <div class="editorArea">
+
+            <div class="fileName">
+                main.code
+            </div>
+
+            <textarea
+                id="codeEditor"
+                spellcheck="false"
+            ></textarea>
+
+        </div>
+
+
+        <div class="output">
+
+            <div class="outputTitle">
+                OUTPUT
+            </div>
+
+            <div id="outputText">
+                Ready to run...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
