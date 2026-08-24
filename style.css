@@ -1,0 +1,413 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #0f172a;
+
+    color: white;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+
+    height: 65px;
+
+    background: #1e293b;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    border-bottom: 1px solid #334155;
+}
+
+
+.logo {
+
+    font-size: 23px;
+
+    font-weight: bold;
+}
+
+
+.logo span {
+
+    color: #38bdf8;
+}
+
+
+.menu {
+
+    font-size: 25px;
+}
+
+
+/* ================= HOME ================= */
+
+#homeScreen {
+
+    padding: 20px 15px 40px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+.welcome {
+
+    margin-bottom: 22px;
+}
+
+
+.welcome h1 {
+
+    margin: 0;
+
+    font-size: 26px;
+}
+
+
+.welcome p {
+
+    margin-top: 7px;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+}
+
+
+/* ================= SEARCH ================= */
+
+.searchBox {
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-size: 15px;
+
+    outline: none;
+
+    margin-bottom: 30px;
+}
+
+
+.searchBox::placeholder {
+
+    color: #64748b;
+}
+
+
+/* ================= CATEGORY ================= */
+
+.category {
+
+    margin-bottom: 30px;
+}
+
+
+.categoryTitle {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    margin-bottom: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+/* ================= LANGUAGE GRID ================= */
+
+.languageGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+
+/* ================= LANGUAGE CARD ================= */
+
+.languageCard {
+
+    min-height: 125px;
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 14px;
+
+    padding: 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.languageCard:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #38bdf8;
+
+    background: #243247;
+}
+
+
+.languageCard:active {
+
+    transform: scale(0.97);
+}
+
+
+.languageIcon {
+
+    font-size: 30px;
+
+    font-weight: bold;
+}
+
+
+.languageName {
+
+    font-size: 17px;
+
+    font-weight: bold;
+}
+
+
+.languageDescription {
+
+    font-size: 11px;
+
+    color: #94a3b8;
+}
+
+
+/* ================= EDITOR ================= */
+
+#editorScreen {
+
+    display: none;
+
+    height: calc(100vh - 65px);
+
+    flex-direction: column;
+}
+
+
+/* EDITOR HEADER */
+
+.editorHeader {
+
+    height: 55px;
+
+    background: #172033;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 12px;
+
+    gap: 12px;
+}
+
+
+.backButton {
+
+    border: none;
+
+    background: none;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+.editorLanguage {
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* ================= TOOLBAR ================= */
+
+.toolbar {
+
+    background: #1e293b;
+
+    padding: 8px;
+
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.runButton {
+
+    background: #22c55e;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 7px;
+
+    padding: 9px 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* ================= EDITOR ================= */
+
+.editorArea {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 0;
+}
+
+
+.fileName {
+
+    background: #172033;
+
+    color: #94a3b8;
+
+    padding: 7px 12px;
+
+    font-size: 12px;
+}
+
+
+textarea {
+
+    flex: 1;
+
+    width: 100%;
+
+    resize: none;
+
+    border: none;
+
+    outline: none;
+
+    padding: 15px;
+
+    background: #020617;
+
+    color: #e2e8f0;
+
+    font-family: monospace;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* ================= OUTPUT ================= */
+
+.output {
+
+    height: 180px;
+
+    background: #020617;
+
+    border-top: 1px solid #334155;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.outputTitle {
+
+    padding: 8px 12px;
+
+    background: #1e293b;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+#outputText {
+
+    padding: 12px;
+
+    font-family: monospace;
+
+    white-space: pre-wrap;
+
+    overflow-y: auto;
+
+    color: #cbd5e1;
+}
+
+
+/* ================= DESKTOP ================= */
+
+@media (min-width: 700px) {
+
+    .languageGrid {
+
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+}
