@@ -125,42 +125,30 @@ let editor = null;
 /* FILE EXTENSIONS */
 /* ================================================= */
 
-const extensions = {
 
-    "C": "c",
+const fileNames = {
 
-    "C++": "cpp",
+    "C": "main.c",
+    "C++": "main.cpp",
+    "Java": "Main.java",
+    "Python": "main.py",
+    "JavaScript": "main.js",
+    "Go": "main.go",
+    "Rust": "main.rs",
 
-    "Java": "java",
+    "HTML": "index.html",
+    "CSS": "style.css",
+    "PHP": "index.php",
 
-    "Python": "py",
+    "SQL": "query.sql",
+    "MySQL": "query.sql",
+    "PostgreSQL": "query.sql",
+    "SQLite": "query.sql",
 
-    "JavaScript": "js",
-
-    "Go": "go",
-
-    "Rust": "rs",
-
-    "HTML": "html",
-
-    "CSS": "css",
-
-    "PHP": "php",
-
-    "SQL": "sql",
-
-    "MySQL": "sql",
-
-    "PostgreSQL": "sql",
-
-    "SQLite": "sql",
-
-    "Kotlin": "kt",
-
-    "Dart": "dart"
+    "Kotlin": "Main.kt",
+    "Dart": "main.dart"
 
 };
-
 
 /* ================================================= */
 /* CODEMIRROR MODE */
@@ -225,11 +213,8 @@ function openEditor(language) {
     ).textContent = language;
 
 
-    document.getElementById(
-        "fileName"
-    ).textContent =
-        "main." +
-        (extensions[language] || "code");
+    document.getElementById("fileName").textContent =
+    fileNames[language] || "main.code";
 
 
     document.getElementById(
